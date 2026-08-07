@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react'
 import type { Listing } from './types'
 
-export const img = (id: string, w: number, h: number) =>
-  `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&auto=format`
+export const img = (id: string, w: number, h: number) => {
+  if (id.startsWith('/') || id.startsWith('http://') || id.startsWith('https://')) {
+    return id
+  }
+  return `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&auto=format`
+}
 
 // Nigerian rents are conventionally quoted per annum rather than monthly,
 // so rent listings show "/yr" here rather than the "/mo" a US or UK site
