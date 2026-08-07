@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #CBC3B8 transparent;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #F5F2EC;
+  color: #0F1E17;
+  margin: 0;
+}
+
+input, button, select, textarea {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+input[type='range'] { accent-color: #C05628; }
+input[type='checkbox'] { accent-color: #C05628; width: 15px; height: 15px; cursor: pointer; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-thumb { background: #CBC3B8; border-radius: 99px; }
+::-webkit-scrollbar-track { background: transparent; }

@@ -1,0 +1,42 @@
+# Baobab Homes
+
+> Nigerian real estate marketplace: search verified buy and rent listings across Lagos and Abuja, connect with licensed agents, and submit a property.
+
+Baobab Homes is a frontend-only real estate marketplace demo. Every listing is reviewed before it goes live. Every agent is licensed with LASRERA or ESVARBON and tied to one patch. No fees to browse, no sign-up wall to see a real address.
+
+## Key pages
+
+- [Home](https://baobabhomes.ng/): Cinematic landing page with hero, neighbourhood filmstrip, features, live stats, and agent spotlight
+- [App home](https://baobabhomes.ng/app): Search widget, latest listings, neighbourhood browse, and agent preview
+- [Search](https://baobabhomes.ng/app/search): Filterable buy/rent results with grid and list views, plus query-string filters
+- [Map view](https://baobabhomes.ng/app/map): Live Google Maps view with custom markers and a property sidebar
+- [Neighborhood guides](https://baobabhomes.ng/app/neighborhoods): Editorial guides for Lekki Phase 1, Ikoyi, Ikeja GRA, Victoria Island, Maitama, and Wuse 2
+- [Market notes](https://baobabhomes.ng/app/market-notes): Stats computed live from current listings
+- [List a property](https://baobabhomes.ng/app/list-property): Four-step submission wizard
+- [Contact](https://baobabhomes.ng/app/contact): Contact form and office details
+- [Fees and commissions](https://baobabhomes.ng/app/fees): Plain-language fee summary
+
+## Tech stack
+
+- React 19 with TypeScript (strict mode)
+- React Router v7 for real per-page URLs
+- Vite 8 for the build tool
+- Tailwind CSS v4 via the @tailwindcss/vite plugin (reset/base layer only)
+- All icons are hand-written inline SVG in src/lib/icons.tsx
+- Google Maps JavaScript API for the live map
+
+## Design
+
+- Display font: Fraunces (serif)
+- Body font: Inter (sans-serif)
+- Colors: C.ink #0F1E17, C.terra #C05628, C.ground #F5F2EC, C.stone #6A6058, C.sand #E5DED4
+- One radius token: 6px
+- One shadow scale: sh0 (resting), sh1 (hover), sh2 (popover)
+
+## Data
+
+Listing and agent data in src/lib/data.ts is placeholder mock content for layout purposes. Listing photos are Unsplash IDs. Real coordinates are used for the demo map.
+
+## Project status
+
+Frontend-only. No backend, no database, no auth. Forms set local state and do not send anything yet. No test suite or lint script configured.
