@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import type { Listing } from '../lib/types'
 import { C } from '../lib/theme'
 import { I } from '../lib/icons'
-import { fmt, img } from '../lib/utils'
+import { fmt, img, useMobile } from '../lib/utils'
 
 interface CardProps {
   l: Listing
@@ -13,6 +13,7 @@ interface CardProps {
 }
 
 export function Card({ l, saved, save, hero = false }: CardProps) {
+  const mob = useMobile()
   const [hov, setHov] = useState(false)
   const on = saved.has(l.id)
   const beds = l.beds === 0 ? 'Studio' : `${l.beds} bd`
@@ -22,24 +23,24 @@ export function Card({ l, saved, save, hero = false }: CardProps) {
     return (
       <div
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-        style={{ background: C.white, borderRadius: C.r, overflow: 'hidden', boxShadow: hov ? C.sh1 : C.sh0, transition: 'box-shadow 0.2s, transform 0.2s', transform: hov ? 'translateY(-1px)' : 'none', display: 'flex', height: 260 }}
+        style={{ background: C.white, borderRadius: C.r, overflow: 'hidden', boxShadow: hov ? C.sh1 : C.sh0, transition: 'box-shadow 0.2s, transform 0.2s', transform: hov ? 'translateY(-1px)' : 'none', display: 'flex', flexDirection: mob ? 'column' : 'row', height: mob ? 'auto' : 260 }}
       >
-        <Link to={`/app/listing/${l.id}`} style={{ ...linkStyle, width: '54%', position: 'relative', background: C.sand, overflow: 'hidden', flexShrink: 0, display: 'block' }}>
+        <Link to={`/app/listing/${l.id}`} style={{ ...linkStyle, width: mob ? '100%' : '54%', height: mob ? 220 : 'auto', position: 'relative', background: C.sand, overflow: 'hidden', flexShrink: 0, display: 'block' }}>
           <img src={img(l.img, 800, 520)} alt={l.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.35s', transform: hov ? 'scale(1.04)' : 'scale(1)' }} />
           <div style={{ position: 'absolute', top: 12, left: 12, display: 'flex', gap: 5 }}>
             {l.verified && <span style={{ background: C.ink, color: C.white, fontSize: 10, fontWeight: 600, padding: '3px 8px', borderRadius: C.r, display: 'flex', alignItems: 'center', gap: 3, letterSpacing: '0.03em' }}><I.Check s={10} />Verified</span>}
             {l.tag && <span style={{ background: C.terra, color: C.white, fontSize: 10, fontWeight: 600, padding: '3px 8px', borderRadius: C.r }}>{l.tag}</span>}
           </div>
         </Link>
-        <div style={{ flex: 1, padding: '24px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ flex: 1, padding: mob ? '18px 16px' : '24px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <Link to={`/app/listing/${l.id}`} style={linkStyle}>
             <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.terra, marginBottom: 8 }}>{l.kind} · {l.type === 'sale' ? 'For sale' : 'To rent'}</div>
-            <div style={{ fontFamily: C.display, fontSize: 26, fontWeight: 600, color: C.ink, lineHeight: 1.15, marginBottom: 4 }}>{fmt(l)}</div>
+            <div style={{ fontFamily: C.display, fontSize: mob ? 22 : 26, fontWeight: 600, color: C.ink, lineHeight: 1.15, marginBottom: 4 }}>{fmt(l)}</div>
             <div style={{ fontSize: 13, fontWeight: 500, color: C.ink, marginBottom: 3 }}>{l.title}</div>
             <div style={{ fontSize: 12, color: C.stone, display: 'flex', alignItems: 'center', gap: 3 }}><I.Pin s={11} />{l.address}, {l.suburb}</div>
           </Link>
           <div>
-            <div style={{ display: 'flex', gap: 16, marginBottom: 16, paddingBottom: 16, borderBottom: `1px solid ${C.sand}` }}>
+            <div style={{ display: 'flex', gap: 16, marginBottom: 16, paddingBottom: 16, borderBottom: `1px solid ${C.sand}`, flexWrap: 'wrap' }}>
               {[{ ico: <I.Bed s={13} />, v: beds }, { ico: <I.Bath s={13} />, v: `${l.baths} ba` }, { ico: <I.Area s={13} />, v: `${l.sqm} sqm` }, ...(l.parking > 0 ? [{ ico: <I.Car s={13} />, v: `${l.parking} parking` }] : [])].map((s, i) => (
                 <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, color: C.stone }}>{s.ico}{s.v}</span>
               ))}

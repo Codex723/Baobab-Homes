@@ -126,7 +126,7 @@ function DetailBody({ l }: { l: (typeof LISTINGS)[number] }) {
 
             {/* Specs */}
             <div style={{ background: C.white, borderRadius: C.r, padding: 20, marginBottom: 24, boxShadow: C.sh0 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, textAlign: 'center', marginBottom: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: mob ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: 16, textAlign: 'center', marginBottom: 16, rowGap: 18 }}>
                 {[{ lbl: 'Bedrooms', val: l.beds === 0 ? 'Studio' : l.beds, ico: <I.Bed s={20} /> }, { lbl: 'Bathrooms', val: l.baths, ico: <I.Bath s={20} /> }, { lbl: 'Floor area', val: `${l.sqm}sqm`, ico: <I.Area s={20} /> }, { lbl: 'Parking', val: l.parking === 0 ? 'None' : l.parking, ico: <I.Car s={20} /> }].map(s => (
                   <div key={s.lbl}>
                     <div style={{ color: C.terra, display: 'flex', justifyContent: 'center', marginBottom: 7 }}>{s.ico}</div>
@@ -151,8 +151,8 @@ function DetailBody({ l }: { l: (typeof LISTINGS)[number] }) {
 
             {/* Amenities */}
             <div style={{ marginBottom: 28 }}>
-              <h2 style={{ fontFamily: C.display, fontSize: 18, fontWeight: 600, color: C.ink, marginBottom: 14 }}>Features &amp; amenities</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 9 }}>
+              <h2 style={{ fontFamily: C.display, fontSize: 18, fontWeight: 600, color: C.ink, marginBottom: 14 }}>Features & amenities</h2>
+              <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : 'repeat(2, 1fr)', gap: 9 }}>
                 {l.amenities.map(a => (
                   <div key={a} style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 13, color: C.ink }}>
                     <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#fdf0ea', border: `1px solid #eecdb8`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.terra, flexShrink: 0 }}><I.Check s={10} /></span>

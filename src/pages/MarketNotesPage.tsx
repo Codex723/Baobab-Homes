@@ -61,7 +61,7 @@ export function MarketNotesPage() {
           <div style={{ background: C.white, borderRadius: C.r, boxShadow: C.sh0, overflow: 'hidden' }}>
             {byKind.map((k, i) => (
               <div key={k.kind} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 18px', borderBottom: i < byKind.length - 1 ? `1px solid ${C.sand}` : 'none' }}>
-                <span style={{ fontSize: 13, color: C.ink, fontWeight: 500, width: 110, flexShrink: 0 }}>{k.kind}</span>
+                <span style={{ fontSize: 13, color: C.ink, fontWeight: 500, width: mob ? 90 : 110, flexShrink: 0 }}>{k.kind}</span>
                 <div style={{ flex: 1, background: C.ground, borderRadius: C.r, height: 8, overflow: 'hidden' }}>
                   <div style={{ width: `${(k.count / LISTINGS.length) * 100}%`, height: '100%', background: C.terra, borderRadius: C.r }} />
                 </div>

@@ -174,7 +174,7 @@ export function HomePage() {
             onMouseLeave={e => e.currentTarget.style.background = C.ink}
           >Meet our agents</button>
         </div>
-        <div style={{ display: 'flex', gap: 14 }}>
+        <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', gap: 14 }}>
           {AGENTS.map(a => (
             <div key={a.id} onClick={() => nav('agent', { aid: a.id })} style={{ flex: 1, background: C.white, borderRadius: C.r, overflow: 'hidden', boxShadow: C.sh0, cursor: 'pointer', transition: 'box-shadow 0.18s, transform 0.18s' }}
               onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = C.sh1; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)' }}
