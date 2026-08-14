@@ -39,9 +39,9 @@ function DetailBody({ l }: { l: (typeof LISTINGS)[number] }) {
   const submit = (e: React.FormEvent) => { e.preventDefault(); setSent(true) }
 
   const Form = ({ inline = false }: { inline?: boolean }) => (
-    <div style={!inline ? { position: 'fixed', inset: 0, background: 'rgba(15,30,23,0.6)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 } : {}}>
-      <div style={{ background: C.white, borderRadius: C.r, padding: 28, maxWidth: 440, width: '100%', position: 'relative', boxShadow: C.sh2 }}>
-        {!inline && <button onClick={() => setModal(false)} style={{ position: 'absolute', top: 16, right: 16, border: 'none', background: 'none', cursor: 'pointer', color: C.stone }}><I.X /></button>}
+    <div style={!inline ? { position: 'fixed', inset: 0, background: 'rgba(15,30,23,0.6)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, overflowY: 'auto', boxSizing: 'border-box' as const } : {}}>
+      <div style={{ background: C.white, borderRadius: C.r, padding: mob ? 20 : 28, maxWidth: 440, width: '100%', position: 'relative', boxShadow: C.sh2, boxSizing: 'border-box' as const }}>
+        {!inline && <button onClick={() => setModal(false)} style={{ position: 'absolute', top: 16, right: 16, border: 'none', background: 'none', cursor: 'pointer', color: C.stone, zIndex: 2 }}><I.X /></button>}
         {sent ? (
           <div style={{ textAlign: 'center', padding: '16px 0' }}>
             <div style={{ width: 48, height: 48, borderRadius: '50%', background: '#edf7ed', border: '2px solid #4caf50', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px', color: '#4caf50' }}><I.Check s={22} /></div>
@@ -125,8 +125,8 @@ function DetailBody({ l }: { l: (typeof LISTINGS)[number] }) {
             </div>
 
             {/* Specs */}
-            <div style={{ background: C.white, borderRadius: C.r, padding: 20, marginBottom: 24, boxShadow: C.sh0 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, textAlign: 'center', marginBottom: 16 }}>
+            <div style={{ background: C.white, borderRadius: C.r, padding: mob ? 16 : 20, marginBottom: 24, boxShadow: C.sh0 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: mob ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: mob ? 14 : 16, textAlign: 'center', marginBottom: 16 }}>
                 {[{ lbl: 'Bedrooms', val: l.beds === 0 ? 'Studio' : l.beds, ico: <I.Bed s={20} /> }, { lbl: 'Bathrooms', val: l.baths, ico: <I.Bath s={20} /> }, { lbl: 'Floor area', val: `${l.sqm}sqm`, ico: <I.Area s={20} /> }, { lbl: 'Parking', val: l.parking === 0 ? 'None' : l.parking, ico: <I.Car s={20} /> }].map(s => (
                   <div key={s.lbl}>
                     <div style={{ color: C.terra, display: 'flex', justifyContent: 'center', marginBottom: 7 }}>{s.ico}</div>
@@ -151,8 +151,8 @@ function DetailBody({ l }: { l: (typeof LISTINGS)[number] }) {
 
             {/* Amenities */}
             <div style={{ marginBottom: 28 }}>
-              <h2 style={{ fontFamily: C.display, fontSize: 18, fontWeight: 600, color: C.ink, marginBottom: 14 }}>Features &amp; amenities</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 9 }}>
+              <h2 style={{ fontFamily: C.display, fontSize: mob ? 17 : 18, fontWeight: 600, color: C.ink, marginBottom: 14 }}>Features & amenities</h2>
+              <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : 'repeat(2, 1fr)', gap: 9 }}>
                 {l.amenities.map(a => (
                   <div key={a} style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 13, color: C.ink }}>
                     <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#fdf0ea', border: `1px solid #eecdb8`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.terra, flexShrink: 0 }}><I.Check s={10} /></span>

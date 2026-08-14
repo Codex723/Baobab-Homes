@@ -6,6 +6,7 @@
 html {
   scrollbar-width: thin;
   scrollbar-color: #CBC3B8 transparent;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -13,6 +14,7 @@ body {
   background-color: #F5F2EC;
   color: #0F1E17;
   margin: 0;
+  overflow-x: hidden;
 }
 
 input, button, select, textarea {
@@ -21,6 +23,13 @@ input, button, select, textarea {
 
 input[type='range'] { accent-color: #C05628; }
 input[type='checkbox'] { accent-color: #C05628; width: 15px; height: 15px; cursor: pointer; }
+
+/* Mobile-friendly touch targets and tap feedback */
+button, a, select, input[type='checkbox'], input[type='radio'] { -webkit-tap-highlight-color: transparent; }
+
+/* Prevent iOS form zoom on small screens (inputs are >= 16px where it matters,
+   but the layout uses small fonts in places so keep forms crisp) */
+input, select, textarea { touch-action: manipulation; }
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-thumb { background: #CBC3B8; border-radius: 99px; }

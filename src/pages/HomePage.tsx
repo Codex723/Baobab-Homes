@@ -52,19 +52,21 @@ export function HomePage() {
                 <I.Pin s={14} />
                 <input value={loc} onChange={e => setLoc(e.target.value)} placeholder="Suburb, area, or landmark" style={{ flex: 1, border: 'none', outline: 'none', fontSize: 13, fontFamily: C.sans, color: C.ink, background: 'none' }} />
               </div>
-              <div style={{ display: 'flex' }}>
-                <select value={ptype} onChange={e => setPtype(e.target.value)} style={{ flex: 1, border: 'none', borderRight: `1px solid ${C.sand}`, outline: 'none', padding: '11px 14px', fontSize: 13, fontFamily: C.sans, color: C.stone, background: 'none', cursor: 'pointer' }}>
-                  {['Any type', 'Detached Duplex', 'Semi-Detached Duplex', 'Terraced Duplex', 'Detached Bungalow', 'Apartment', 'Studio Apartment', 'Land'].map(t => <option key={t}>{t}</option>)}
-                </select>
-                <select value={beds} onChange={e => setBeds(e.target.value)} style={{ flex: 1, border: 'none', borderRight: `1px solid ${C.sand}`, outline: 'none', padding: '11px 14px', fontSize: 13, fontFamily: C.sans, color: C.stone, background: 'none', cursor: 'pointer' }}>
-                  {['Any beds', 'Studio', '1+', '2+', '3+', '4+', '5+'].map(b => <option key={b}>{b}</option>)}
-                </select>
-                <button onClick={() => nav('search')} style={{ background: C.terra, color: C.white, border: 'none', cursor: 'pointer', padding: '11px 20px', display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, fontFamily: C.sans, transition: 'background 0.13s', flexShrink: 0 }}
+              <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row' }}>
+                <div style={{ display: 'flex' }}>
+                  <select value={ptype} onChange={e => setPtype(e.target.value)} style={{ flex: 1, border: 'none', borderRight: `1px solid ${C.sand}`, outline: 'none', padding: '11px 14px', fontSize: 13, fontFamily: C.sans, color: C.stone, background: 'none', cursor: 'pointer', width: '100%', boxSizing: 'border-box' as const }}>
+                    {['Any type', 'Detached Duplex', 'Semi-Detached Duplex', 'Terraced Duplex', 'Detached Bungalow', 'Apartment', 'Studio Apartment', 'Land'].map(t => <option key={t}>{t}</option>)}
+                  </select>
+                  <select value={beds} onChange={e => setBeds(e.target.value)} style={{ flex: 1, border: 'none', borderRight: `1px solid ${C.sand}`, outline: 'none', padding: '11px 14px', fontSize: 13, fontFamily: C.sans, color: C.stone, background: 'none', cursor: 'pointer', width: '100%', boxSizing: 'border-box' as const }}>
+                    {['Any beds', 'Studio', '1+', '2+', '3+', '4+', '5+'].map(b => <option key={b}>{b}</option>)}
+                  </select>
+                </div>
+                <button onClick={() => nav('search')} style={{ background: C.terra, color: C.white, border: 'none', cursor: 'pointer', padding: mob ? '12px 20px' : '11px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 13, fontWeight: 600, fontFamily: C.sans, transition: 'background 0.13s', flexShrink: 0, borderTop: mob ? `1px solid ${C.sand}` : 'none' }}
                   onMouseEnter={e => e.currentTarget.style.background = C.terraD}
                   onMouseLeave={e => e.currentTarget.style.background = C.terra}
                 >
                   <I.Search s={14} />
-                  {mob ? '' : 'Search'}
+                  {mob ? 'Search properties' : 'Search'}
                 </button>
               </div>
             </div>
@@ -174,14 +176,14 @@ export function HomePage() {
             onMouseLeave={e => e.currentTarget.style.background = C.ink}
           >Meet our agents</button>
         </div>
-        <div style={{ display: 'flex', gap: 14 }}>
+        <div style={{ display: 'flex', gap: 14, flexDirection: mob ? 'column' : 'row' }}>
           {AGENTS.map(a => (
-            <div key={a.id} onClick={() => nav('agent', { aid: a.id })} style={{ flex: 1, background: C.white, borderRadius: C.r, overflow: 'hidden', boxShadow: C.sh0, cursor: 'pointer', transition: 'box-shadow 0.18s, transform 0.18s' }}
+            <div key={a.id} onClick={() => nav('agent', { aid: a.id })} style={{ flex: 1, background: C.white, borderRadius: C.r, overflow: 'hidden', boxShadow: C.sh0, cursor: 'pointer', transition: 'box-shadow 0.18s, transform 0.18s', display: mob ? 'flex' : 'block' }}
               onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = C.sh1; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)' }}
               onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = C.sh0; (e.currentTarget as HTMLDivElement).style.transform = 'none' }}
             >
-              <img src={img(a.img, 220, 200)} alt={a.name} style={{ width: '100%', height: 120, objectFit: 'cover', objectPosition: 'top' }} />
-              <div style={{ padding: '10px 12px 12px' }}>
+              <img src={img(a.img, 220, 200)} alt={a.name} style={{ width: mob ? 80 : '100%', height: mob ? 80 : 120, objectFit: 'cover', objectPosition: 'top', flexShrink: 0 }} />
+              <div style={{ padding: mob ? '10px 12px' : '10px 12px 12px', display: 'flex', flexDirection: 'column', justifyContent: 'center', minWidth: 0 }}>
                 <div style={{ fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 1 }}>{a.name}</div>
                 <div style={{ fontSize: 10, color: C.stone, marginBottom: 4 }}>{a.role}</div>
                 <div style={{ fontSize: 11, color: C.terra, fontWeight: 500 }}>{a.office}</div>

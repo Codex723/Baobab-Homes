@@ -23,7 +23,7 @@ export function Navbar() {
 
   return (
     <nav style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(245,242,236,0.96)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${C.sand}` }}>
-      <div style={{ maxWidth: 1360, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 58 }}>
+      <div style={{ maxWidth: 1360, margin: '0 auto', padding: mob ? '0 16px' : '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 58 }}>
         <Link to="/app" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 12L11 4l8 8" stroke={C.terra} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /><path d="M5 10v8a1 1 0 001 1h4v-5h2v5h4a1 1 0 001-1v-8" stroke={C.ink} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           <span style={{ fontFamily: C.display, fontSize: 18, fontWeight: 600, color: C.ink, letterSpacing: '-0.3px' }}>{BRAND}</span>
@@ -50,11 +50,11 @@ export function Navbar() {
         )}
       </div>
       {mob && open && (
-        <div style={{ background: C.ground, borderTop: `1px solid ${C.sand}`, paddingBottom: 12 }}>
+        <div style={{ background: C.ground, borderTop: `1px solid ${C.sand}`, paddingBottom: 12, maxHeight: 'calc(100vh - 58px)', overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {NAV_ITEMS.map(([lbl, to, md]) => (
-            <Link key={lbl} to={to} onClick={() => { md && setMode(md); setOpen(false) }} style={{ textDecoration: 'none', display: 'block', width: '100%', textAlign: 'left', border: 'none', background: 'none', cursor: 'pointer', padding: '12px 24px', fontSize: 15, fontWeight: 500, color: C.ink, fontFamily: C.sans }}>{lbl}</Link>
+            <Link key={lbl} to={to} onClick={() => { md && setMode(md); setOpen(false) }} style={{ textDecoration: 'none', display: 'block', width: '100%', textAlign: 'left', border: 'none', background: 'none', cursor: 'pointer', padding: '12px 16px', fontSize: 15, fontWeight: 500, color: C.ink, fontFamily: C.sans }}>{lbl}</Link>
           ))}
-          <div style={{ padding: '8px 24px 0' }}>
+          <div style={{ padding: '8px 16px 0' }}>
             <Link to="/app/list-property" onClick={() => setOpen(false)} style={{ textDecoration: 'none', display: 'block', textAlign: 'center', width: '100%', border: 'none', background: C.terra, cursor: 'pointer', padding: '11px', borderRadius: C.r, fontSize: 14, fontWeight: 600, color: C.white, fontFamily: C.sans, boxSizing: 'border-box' }}>List a property</Link>
           </div>
         </div>

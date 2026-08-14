@@ -84,8 +84,8 @@ export function MarketNotesPage() {
                   onMouseEnter={e => e.currentTarget.style.background = C.ground}
                   onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
-                  <span style={{ fontSize: 13, color: C.ink, fontWeight: 500, flex: 1 }}>{n.name}</span>
-                  <span style={{ fontSize: 11.5, color: C.stone }}>
+                  <span style={{ fontSize: 13, color: C.ink, fontWeight: 500, flexShrink: 0 }}>{n.name}</span>
+                  <span style={{ fontSize: 11.5, color: C.stone, textAlign: 'right', flex: 1, minWidth: 0 }}>
                     {local.length === 0 ? 'No active listings' : [s && `${money(s.min)}${s.min !== s.max ? `\u2013${money(s.max)}` : ''} sale`, r && `${money(r.min, true)}${r.min !== r.max ? `\u2013${money(r.max, true)}` : ''} rent`].filter(Boolean).join(' \u00b7 ')}
                   </span>
                   <I.ChevR s={12} />

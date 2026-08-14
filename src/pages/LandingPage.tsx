@@ -112,11 +112,11 @@ function LandingNav({ mob }: { mob: boolean }) {
         )}
       </div>
       {mob && open && (
-        <div style={{ background: C.ground, borderTop: `1px solid ${C.sand}`, paddingBottom: 12 }}>
+        <div style={{ background: C.ground, borderTop: `1px solid ${C.sand}`, paddingBottom: 12, maxHeight: 'calc(100vh - 58px)', overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {items.map(([lbl, to, md]) => (
-            <Link key={lbl} to={to} onClick={() => { md && setMode(md); setOpen(false) }} style={{ textDecoration: 'none', display: 'block', padding: '12px 24px', fontSize: 15, fontWeight: 500, color: C.ink, fontFamily: C.sans }}>{lbl}</Link>
+            <Link key={lbl} to={to} onClick={() => { md && setMode(md); setOpen(false) }} style={{ textDecoration: 'none', display: 'block', padding: '12px 16px', fontSize: 15, fontWeight: 500, color: C.ink, fontFamily: C.sans }}>{lbl}</Link>
           ))}
-          <div style={{ padding: '8px 24px 0' }}>
+          <div style={{ padding: '8px 16px 0' }}>
             <Link to="/app/list-property" onClick={() => setOpen(false)} style={{ textDecoration: 'none', display: 'block', textAlign: 'center', background: C.terra, padding: '11px', borderRadius: C.r, fontSize: 14, fontWeight: 600, color: C.white, fontFamily: C.sans, boxSizing: 'border-box' }}>List a property</Link>
           </div>
         </div>
@@ -245,7 +245,7 @@ export function LandingPage() {
       <section style={{ padding: mob ? '56px 20px' : '110px 40px' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
           <p style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.terra, marginBottom: 12, textAlign: mob ? 'left' : 'center' }}>The people behind the listings</p>
-          <h2 style={{ fontFamily: C.display, fontSize: mob ? 24 : 34, fontWeight: 600, color: C.ink, lineHeight: 1.2, marginBottom: 44, textAlign: mob ? 'left' : 'center' }}>
+          <h2 style={{ fontFamily: C.display, fontSize: mob ? 24 : 34, fontWeight: 600, color: C.ink, lineHeight: 1.2, marginBottom: mob ? 24 : 44, textAlign: mob ? 'left' : 'center' }}>
             Licensed agents, each working a defined patch, not a lead queue.
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>

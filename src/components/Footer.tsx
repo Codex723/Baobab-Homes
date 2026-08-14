@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { C, BRAND } from '../lib/theme'
+import { useMobile } from '../lib/utils'
 
 const COLUMNS: [string, [string, string][]][] = [
   ['Explore', [['Buy', '/app/search?type=buy'], ['Rent', '/app/search?type=rent'], ['Map view', '/app/map'], ['List a property', '/app/list-property']]],
@@ -9,11 +10,12 @@ const COLUMNS: [string, [string, string][]][] = [
 ]
 
 export function Footer() {
+  const mob = useMobile()
   return (
-    <footer style={{ background: C.ink, borderTop: `1px solid rgba(245,242,236,0.08)`, padding: '48px 40px 28px' }}>
+    <footer style={{ background: C.ink, borderTop: `1px solid rgba(245,242,236,0.08)`, padding: mob ? '36px 20px 24px' : '48px 40px 28px' }}>
       <div style={{ maxWidth: 1360, margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr 1fr', gap: 32, marginBottom: 36 }}>
-          <div>
+        <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr 1fr' : '1.4fr 1fr 1fr 1fr 1fr', gap: mob ? 24 : 32, marginBottom: 36 }}>
+          <div style={mob ? { gridColumn: '1/-1' } : undefined}>
             <div style={{ fontFamily: C.display, fontSize: 18, fontWeight: 600, color: C.ground, marginBottom: 10 }}>{BRAND}</div>
             <p style={{ fontSize: 12, color: 'rgba(245,242,236,0.5)', lineHeight: 1.7, maxWidth: 260 }}>
               Licensed real estate brokerage. Speak to an agent before sending any money or documents. We will never ask you to pay before a verified viewing.
