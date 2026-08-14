@@ -126,7 +126,7 @@ function DetailBody({ l }: { l: (typeof LISTINGS)[number] }) {
 
             {/* Specs */}
             <div style={{ background: C.white, borderRadius: C.r, padding: mob ? 16 : 20, marginBottom: 24, boxShadow: C.sh0 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: mob ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: mob ? 14 : 16, textAlign: 'center', marginBottom: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: mob ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: mob ? 14 : 16, textAlign: 'center', marginBottom: 16, rowGap: 18 }}>
                 {[{ lbl: 'Bedrooms', val: l.beds === 0 ? 'Studio' : l.beds, ico: <I.Bed s={20} /> }, { lbl: 'Bathrooms', val: l.baths, ico: <I.Bath s={20} /> }, { lbl: 'Floor area', val: `${l.sqm}sqm`, ico: <I.Area s={20} /> }, { lbl: 'Parking', val: l.parking === 0 ? 'None' : l.parking, ico: <I.Car s={20} /> }].map(s => (
                   <div key={s.lbl}>
                     <div style={{ color: C.terra, display: 'flex', justifyContent: 'center', marginBottom: 7 }}>{s.ico}</div>
